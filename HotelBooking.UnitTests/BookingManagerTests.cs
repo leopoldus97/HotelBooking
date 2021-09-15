@@ -10,7 +10,8 @@ namespace HotelBooking.UnitTests
     {
         private IBookingManager bookingManager;
 
-        public BookingManagerTests(){
+        public BookingManagerTests()
+        {
             DateTime start = DateTime.Today.AddDays(10);
             DateTime end = DateTime.Today.AddDays(20);
             IRepository<Booking> bookingRepository = new FakeBookingRepository(start, end);
@@ -75,6 +76,39 @@ namespace HotelBooking.UnitTests
         }
 
         [Fact]
+        public void CreateBooking_IncorrectStartDate_ReturnsFalse()
+        {
+            // Arrange
+            Booking booking = new()
+            {
+                StartDate = DateTime.Today.AddDays(11),
+                EndDate = DateTime.Today.AddDays(12)
+            };
+
+            // Act
+            bool isCreated = bookingManager.CreateBooking(booking);
+
+            // Assert
+            Assert.False(isCreated);
+        }
+
+        [Fact]
+        public void CreateBooking_CorrectStartDate_ReturnsTrue()
+        {
+            // Arrange
+            Booking booking = new()
+            {
+                StartDate = DateTime.Today.AddDays(1),
+                EndDate = DateTime.Today.AddDays(2)
+            };
+
+            // Act
+            bool isCreated = bookingManager.CreateBooking(booking);
+
+            // Assert
+            Assert.True(isCreated);
+        }
+
         public void GetFullyOccupiedDates_StartDateIsMoreThanEndDate_ThrowArgumentException()
         {
             //Arrange
