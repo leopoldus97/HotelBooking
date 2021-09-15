@@ -18,13 +18,42 @@ namespace HotelBooking.UnitTests
         }
 
         [Fact]
-        public void FindAvailableRoom_StartDateNotInTheFuture_ThrowsArgumentException()
+        public void FindAvailableRoom_StartDateNotToday_ThrowsArgumentException()
         {
             // Arrange
-            DateTime date = DateTime.Today;
+            DateTime dateToday = DateTime.Today;
+            DateTime dateTomorrow = DateTime.Today.AddDays(1);
 
             // Act
-            Action act = () => bookingManager.FindAvailableRoom(date, date);
+            Action act = () => bookingManager.FindAvailableRoom(dateToday, dateTomorrow);
+
+            // Assert
+            Assert.Throws<ArgumentException>(act);
+        }
+
+        [Fact]
+        public void FindAvailableRoom_StartDateBeforeToday_ThrowsArgumentException()
+        {
+            // Arrange
+            DateTime dateYesterday = DateTime.Today.AddDays(-1);
+            DateTime dateToday = DateTime.Today;
+
+            // Act
+            Action act = () => bookingManager.FindAvailableRoom(dateYesterday, dateToday);
+
+            // Assert
+            Assert.Throws<ArgumentException>(act);
+        }
+
+        [Fact]
+        public void FindAvailableRoom_EndDateNotOlderThanStartDate_ThrowsArgumentException()
+        {
+            // Arrange
+            DateTime dateStart = DateTime.Today.AddDays(1);
+            DateTime dateEnd = DateTime.Today;
+
+            // Act
+            Action act = () => bookingManager.FindAvailableRoom(dateStart, dateEnd);
 
             // Assert
             Assert.Throws<ArgumentException>(act);
@@ -34,12 +63,28 @@ namespace HotelBooking.UnitTests
         public void FindAvailableRoom_RoomAvailable_RoomIdNotMinusOne()
         {
             // Arrange
-            DateTime date = DateTime.Today.AddDays(1);
+            DateTime dateStart = DateTime.Today.AddDays(1);
+            DateTime dateEnd = DateTime.Today.AddDays(2);
+
             // Act
-            int roomId = bookingManager.FindAvailableRoom(date, date);
+            int roomId = bookingManager.FindAvailableRoom(dateStart, dateEnd);
+
             // Assert
             Assert.NotEqual(-1, roomId);
         }
 
+        [Fact]
+        public void FindAvailableRoom_RoomNOTAvailable_MinusOne()
+        {
+            // Arrange
+            DateTime dateStart = DateTime.Today.AddDays(10);
+            DateTime dateEnd = DateTime.Today.AddDays(20);
+
+            // Act
+            int roomId = bookingManager.FindAvailableRoom(dateStart, dateEnd);
+
+            // Assert
+            Assert.Equal(-1, roomId);
+        }
     }
 }
