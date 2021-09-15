@@ -110,5 +110,19 @@ namespace HotelBooking.UnitTests
             //Assert
             Assert.Equal(11, fullyOccupiedDates.Count);
         }
+
+        [Fact]
+        public void FindAvailableRoom_RoomNOTAvailable_MinusOne()
+        {
+            // Arrange
+            DateTime dateStart = DateTime.Today.AddDays(10);
+            DateTime dateEnd = DateTime.Today.AddDays(20);
+
+            // Act
+            int roomId = bookingManager.FindAvailableRoom(dateStart, dateEnd);
+
+            // Assert
+            Assert.Equal(-1, roomId);
+        }
     }
 }
