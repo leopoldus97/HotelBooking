@@ -94,8 +94,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code should be 500\", () => {\r",
-							"    pm.response.to.be.serverError;\r",
+							"pm.test(\"Status code should be 400\", () => {\r",
+							"    pm.response.to.have.status(400);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -135,8 +135,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code should be 500\", () => {\r",
-							"    pm.response.to.be.serverError;\r",
+							"pm.test(\"Status code should be 400\", () => {\r",
+							"    pm.response.to.have.status(400);\r",
 							"});"
 						],
 						"type": "text/javascript"

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HotelBooking.Core;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,7 +47,8 @@ namespace HotelBooking.WebApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Booking booking)
         {
-            if (booking == null)
+            try {
+                if (booking == null)
             {
                 return BadRequest();
             }
@@ -60,6 +62,9 @@ namespace HotelBooking.WebApi.Controllers
             else
             {
                 return Conflict("The booking could not be created. All rooms are occupied. Please try another period.");
+            }
+            } catch (ArgumentException ex) {
+                return BadRequest(ex.Message);
             }
 
         }
