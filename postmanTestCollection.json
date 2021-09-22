@@ -33,12 +33,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:5001/bookings",
-					"protocol": "https",
+					"raw": "http://localhost:5000/bookings",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5001",
+					"port": "5000",
 					"path": [
 						"bookings"
 					]
@@ -74,12 +74,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:5001/bookings",
-					"protocol": "https",
+					"raw": "http://localhost:5000/bookings",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5001",
+					"port": "5000",
 					"path": [
 						"bookings"
 					]
@@ -115,12 +115,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:5001/bookings",
-					"protocol": "https",
+					"raw": "http://localhost:5000/bookings",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5001",
+					"port": "5000",
 					"path": [
 						"bookings"
 					]
@@ -156,12 +156,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:5001/bookings",
-					"protocol": "https",
+					"raw": "http://localhost:5000/bookings",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5001",
+					"port": "5000",
 					"path": [
 						"bookings"
 					]
