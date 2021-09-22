@@ -166,7 +166,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"startDate\": \"{{futureStart}}\",\r\n    \"endDate\": \"{{futureEnd}}\"\r\n}",
+					"raw": "{\r\n    \"customerId\": 1,\r\n    \"startDate\": \"{{futureStart}}\",\r\n    \"endDate\": \"{{futureEnd}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -190,8 +190,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Booking: Status code should be 409\", () => {\r",
-							"    // pm.response.to.have.status(409);\r",
-							"    pm.expect(true);\r",
+							"    pm.response.to.have.status(409);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -212,7 +211,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"startDate\": \"{{futureStart}}\",\r\n    \"endDate\": \"{{futureEnd}}\"\r\n}",
+					"raw": "{\r\n    \"customerId\": 1,\r\n    \"startDate\": \"{{futureStart}}\",\r\n    \"endDate\": \"{{futureEnd}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -257,7 +256,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"startDate\": \"2021-09-21T00:00:00+02:00\",\r\n    \"endDate\": \"2021-09-25T00:00:00+02:00\"\r\n}",
+					"raw": "{\r\n    \"customerId\": 1,\r\n    \"startDate\": \"2021-09-21T00:00:00+02:00\",\r\n    \"endDate\": \"2021-09-25T00:00:00+02:00\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -293,13 +292,41 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"startDate\": \"2021-10-25T00:00:00+02:00\",\r\n    \"endDate\": \"2021-10-21T00:00:00+02:00\"\r\n}",
+					"raw": "{\r\n    \"customerId\": 1,\r\n    \"startDate\": \"2021-10-25T00:00:00+02:00\",\r\n    \"endDate\": \"2021-10-21T00:00:00+02:00\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
+				"url": {
+					"raw": "{{bookingUrl}}",
+					"host": [
+						"{{bookingUrl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resp = pm.response.json();\r",
+							"pm.test(\"Booking: Response body length should be one\", () => {\r",
+							"    pm.expect(resp.length).to.equal(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
 				"url": {
 					"raw": "{{bookingUrl}}",
 					"host": [
