@@ -5,6 +5,7 @@ on:
     branches: 
     - main
     - development
+    - workflows-test
   pull_request:
     branches: [ main ]
 
@@ -46,7 +47,7 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
       - name: Run Dotnet Project
-        run: dotnet ./HotelBooking.WebApi/bin/Debug/net5.0/HotelBooking.WebApi.dll &
+        run: dotnet run --no-build &
       - name: Run Newman Tests
         run: newman run postmanTestCollection.json --insecure
       
