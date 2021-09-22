@@ -39,10 +39,12 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
       - name: Install Newman
         run: npm install -g newman
-      - name: Run API
-        run: dotnet run --project HotelBooking.WebApi &
       - name: Run Newman Tests
-        run: newman postmanTestCollection.json
+        run: dotnet ./HotelBooking.WebApi/bin/Debug/net5.0/HotelBooking.WebApi.dll & newman run postmanTestCollection.json
       
