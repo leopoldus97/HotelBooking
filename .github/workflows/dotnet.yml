@@ -42,7 +42,7 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
       - name: Run API
-        run: dotnet run --project HotelBooking.WebApi
+        run: dotnet run --project HotelBooking.WebApi &
       - name: Run Newman Tests
         run: newman postmanTestCollection.json
       
