@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using HotelBooking.Core;
+using HotelBooking.Infrastructure.Repositories;
 using HotelBooking.UnitTests.Fakes;
+using Moq;
 using Xunit;
 
 namespace HotelBooking.UnitTests
@@ -9,14 +11,41 @@ namespace HotelBooking.UnitTests
     public class BookingManagerTests
     {
         private IBookingManager bookingManager;
+        private Mock<IRepository<Booking>> bookingRepository;
+        private Mock<IRepository<Room>> roomRepository;
 
-        public BookingManagerTests()
-        {
-            DateTime start = DateTime.Today.AddDays(10);
-            DateTime end = DateTime.Today.AddDays(20);
-            IRepository<Booking> bookingRepository = new FakeBookingRepository(start, end);
-            IRepository<Room> roomRepository = new FakeRoomRepository();
-            bookingManager = new BookingManager(bookingRepository, roomRepository);
+        // public BookingManagerTests()
+        // {
+        //     DateTime start = DateTime.Today.AddDays(10);
+        //     DateTime end = DateTime.Today.AddDays(20);
+        //     IRepository<Booking> bookingRepository = new FakeBookingRepository(start, end);
+        //     IRepository<Room> roomRepository = new FakeRoomRepository();
+        //     bookingManager = new BookingManager(bookingRepository, roomRepository);
+        // }
+
+        public BookingManagerTests() {
+            bookingRepository = new Mock<IRepository<Booking>>();
+            roomRepository = new Mock<IRepository<Room>>();
+
+            var rooms = new List<Room>
+            {
+                new Room { Id=1, Description="A" },
+                new Room { Id=2, Description="B" },
+            };
+
+            DateTime fullyOccupiedStartDate = DateTime.Today.AddDays(10);
+            DateTime fullyOccupiedEndDate = DateTime.Today.AddDays(20);
+
+            List<Booking> bookings = new List<Booking>
+            {
+                new Booking { Id=1, StartDate=fullyOccupiedStartDate, EndDate=fullyOccupiedEndDate, IsActive=true, CustomerId=1, RoomId=1 },
+                new Booking { Id=2, StartDate=fullyOccupiedStartDate, EndDate=fullyOccupiedEndDate, IsActive=true, CustomerId=2, RoomId=2 },
+            };
+
+            roomRepository.Setup(x => x.GetAll()).Returns(rooms);
+            bookingRepository.Setup(x => x.GetAll()).Returns(bookings);
+
+            bookingManager = new BookingManager(bookingRepository.Object, roomRepository.Object);
         }
 
         [Fact]
