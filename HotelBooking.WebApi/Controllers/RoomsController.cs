@@ -18,10 +18,16 @@ namespace HotelBooking.WebApi.Controllers
         }
 
         // GET: api/rooms
-        [HttpGet]
+        [HttpGet(Name = "GetRooms")]
         public IEnumerable<Room> Get()
         {
             return repository.GetAll();
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] Room room) {
+            repository.Add(room);
+            return CreatedAtRoute("GetRooms", null);
         }
 
         // GET api/rooms/5
