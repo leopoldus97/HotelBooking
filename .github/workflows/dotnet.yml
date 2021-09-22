@@ -47,7 +47,7 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
       - name: Run Dotnet Project
-        run: cd .\HotelBooking.WebApi\ && dotnet run &
+        run: ASPNETCORE_ENVIRONMENT=Development dotnet ./HotelBooking.WebApi/bin/Debug/net5.0/HotelBooking.WebApi.dll &
       - name: Run Newman Tests
-        run: cd .. && newman run postmanTestCollection.json --insecure
+        run: newman run postmanTestCollection.json --insecure
       
