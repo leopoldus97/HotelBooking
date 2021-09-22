@@ -33,8 +33,6 @@ namespace HotelBooking.UnitTests
                 new Room { Id=2, Description="B" },
             };
 
-            Assert.Empty(rooms);
-
             DateTime fullyOccupiedStartDate = DateTime.Today.AddDays(10);
             DateTime fullyOccupiedEndDate = DateTime.Today.AddDays(20);
 
