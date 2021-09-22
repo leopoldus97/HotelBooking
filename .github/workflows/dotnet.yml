@@ -45,6 +45,8 @@ jobs:
         run: dotnet build --no-restore
       - name: Install Newman
         run: npm install -g newman
+      - name: Run Dotnet Project
+        run: dotnet ./HotelBooking.WebApi/bin/Debug/net5.0/HotelBooking.WebApi.dll &
       - name: Run Newman Tests
-        run: dotnet ./HotelBooking.WebApi/bin/Debug/net5.0/HotelBooking.WebApi.dll && newman run postmanTestCollection.json --insecure
+        run: newman run postmanTestCollection.json --insecure
       
