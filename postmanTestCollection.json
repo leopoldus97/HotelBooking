@@ -33,12 +33,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/bookings",
-					"protocol": "http",
+					"raw": "https://localhost:5001/bookings",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "5001",
 					"path": [
 						"bookings"
 					]
@@ -74,12 +74,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/bookings",
-					"protocol": "http",
+					"raw": "https://localhost:5001/bookings",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "5001",
 					"path": [
 						"bookings"
 					]
@@ -95,7 +95,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Status code should be 500\", () => {\r",
-							"    pm.response.to.have.status(500);\r",
+							"    pm.response.to.be.serverError;\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -115,12 +115,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/bookings",
-					"protocol": "http",
+					"raw": "https://localhost:5001/bookings",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "5001",
 					"path": [
 						"bookings"
 					]
@@ -136,7 +136,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Status code should be 500\", () => {\r",
-							"    pm.response.to.have.status(500);\r",
+							"    pm.response.to.be.serverError;\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -156,12 +156,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5000/bookings",
-					"protocol": "http",
+					"raw": "https://localhost:5001/bookings",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "5001",
 					"path": [
 						"bookings"
 					]
