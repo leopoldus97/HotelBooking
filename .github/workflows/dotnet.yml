@@ -5,6 +5,7 @@ on:
     branches: 
     - main
     - development
+    - workflows-test
   pull_request:
     branches: [ main ]
 
